@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, session, flash
+
 
 app = Flask(__name__)
+app.secret_key = 'jsw'
 
 class Jogo:
   def __init__(self, nome, categoria, console):
@@ -28,6 +30,27 @@ def criar():
   console = request.form['console']
   jogo = Jogo(nome, categoria, console)
   lista.append(jogo)
-  return render_template('lista.html', titulo='Jogos', jogos=lista)
+  return redirect('/')
+
+@app.route('/login')
+def login():
+  return render_template('login.html')
+
+@app.route('/autenticar', methods=['POST'])
+def autenticar():
+  if '1234' == request.form['senha']:
+    session['usuario_logado'] = request.form['usuario']
+    flash(session['usuario_logado'] + ' logado com sucesso!')
+    return redirect('/')
+  else: 
+    flash('Usuario ou senha incorreta.')
+    return redirect('/login')
+  
+@app.route('/logout')
+def logout():
+  session['usuario_logado'] = None
+  flash('Logout realizado com secesso!')
+  return redirect('/')
+    
 
 app.run(debug=True)
