@@ -10,12 +10,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
     '{SGBD}://{usuario}:{senha}@{servidor}/{database}'.format(
         SGBD = 'mysql+mysqlconnector',
         usuario = 'root',
-        senha = 'admin',
+        senha = '3412',
         servidor = 'localhost',
         database = 'jogoteca'
     )
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:admin@root/jogoteca'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:3412@localhost/jogoteca'
 
 db = SQLAlchemy(app)
 
@@ -36,8 +36,6 @@ class Usuarios(db.Model):
 
   def __repr__(self):
     return '<Name %r>' % self.name
-
-
 
 @app.route('/')
 def index():
