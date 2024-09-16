@@ -31,3 +31,21 @@ elif dev == 'html':
   print('Nem é programação')
 else:
   print('Qualquer outra coisa')
+
+nomes = [
+  {
+    'nome': 'João',
+    'idade': '25'
+  },
+  {
+    'nome': 'Maria',
+    'idade': '30'
+  },
+  {
+    'nome': 'Pedro',
+    'idade': '35'
+  }
+]
+
+for d in nomes:
+  print(f"{d['nome']} tem {d['idade']} anos")
